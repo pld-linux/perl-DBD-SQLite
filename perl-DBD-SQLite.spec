@@ -3,8 +3,8 @@
 %bcond_without	tests	# do not perform "make test"
 
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	DBD
-%define	pnam	SQLite
+%define		pdir	DBD
+%define		pnam	SQLite
 Summary:	DBD::SQLite - DBI driver for SQLite database
 Summary(pl):	DBD::SQLite - sterownik DBI dla bazy SQLite
 Name:		perl-DBD-SQLite
