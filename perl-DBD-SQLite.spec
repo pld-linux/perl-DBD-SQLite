@@ -9,7 +9,7 @@ Summary:	DBD::SQLite - DBI driver for SQLite database
 Summary(pl):	DBD::SQLite - sterownik DBI dla bazy SQLite
 Name:		perl-DBD-SQLite
 Version:	0.25
-Release:	0
+Release:	0.1
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
