@@ -38,7 +38,8 @@ http://www.hwaci.com/sw/sqlite/.
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 
-%{__make}
+%{__make} OPTIMIZE="%{rpmcflags}"
+
 %{!?_without_tests:%{__make} test}
 
 %install
