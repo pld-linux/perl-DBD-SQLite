@@ -17,7 +17,7 @@ BuildRequires:	perl >= 5.6
 %if %{?_without_tests:0}%{!?_without_tests:1}
 BuildRequires:	perl-DBI
 %endif
-BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpm-perlprov >= 4.0.2-104
 BuildRequires:	sqlite-devel >= 2.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,8 +35,7 @@ http://www.hwaci.com/sw/sqlite/.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS=vendor
+%{__perl} Makefile.PL
 
 %{__make} OPTIMIZE="%{rpmcflags}"
 
@@ -53,8 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorarch}/DBD/SQLite.pm
-%dir %{perl_vendorarch}/auto/DBD/SQLite
-%{perl_vendorarch}/auto/DBD/SQLite/SQLite.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/DBD/SQLite/SQLite.so
+%{perl_sitearch}/DBD/SQLite.pm
+%dir %{perl_sitearch}/auto/DBD/SQLite
+%{perl_sitearch}/auto/DBD/SQLite/SQLite.bs
+%attr(755,root,root) %{perl_sitearch}/auto/DBD/SQLite/SQLite.so
 %{_mandir}/man3/DBD*
