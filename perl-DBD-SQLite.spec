@@ -41,7 +41,7 @@ http://www.hwaci.com/sw/sqlite/.
 # If SQLITE_PTR_SZ is not set in OPTIMIZE SQLite assumes 64-bit
 # architecture and fails. 
 %{__make} \
-	OPTIMIZE="%{rpmcflags} -DSQLITE_PTR_SZ=`%{__perl} -MConfig -e 'print \"$Config{ptrsize}\" . \"\n\";'`"
+	OPTIMIZE="%{rpmcflags} -DSQLITE_PTR_SZ=`%{__perl} -MConfig -e 'print \"$Config{ptrsize}\";'`"
 
 %{?with_tests:%{__make} test}
 
