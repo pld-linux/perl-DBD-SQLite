@@ -1,21 +1,21 @@
 #
 # Conditional build:
-# _without_tests - do not perform "make test"
-#
+%bcond_without	tests	# do not perform "make test"
+
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	DBD
 %define		pnam	SQLite
 Summary:	DBD::SQLite - DBI driver for SQLite database
 Summary(pl):	DBD::SQLite - sterownik DBI dla bazy SQLite
 Name:		perl-DBD-SQLite
-Version:	0.28
+Version:	0.29
 Release:	0.1
-License:	GPL/Artistic
+License:	GPL or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	f7143b55b27cc347936434a76fad15a8
-BuildRequires:	perl-devel >= 5.6
-%if %{?_without_tests:0}%{!?_without_tests:1}
+# Source0-md5:	655d7b6f55147f39f29c900d8029edb7
+BuildRequires:	perl-devel >= 5.8
+%if %{with tests}
 BuildRequires:	perl-DBI
 %endif
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -38,14 +38,18 @@ http://www.hwaci.com/sw/sqlite/.
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 
-%{__make} OPTIMIZE="%{rpmcflags}"
+# If SQLITE_PTR_SZ is not set in OPTIMIZE SQLite assumes 64-bit
+# architecture and fails. 
+%{__make} \
+	OPTIMIZE="%{rpmcflags} -DSQLITE_PTR_SZ=4"
 
-%{!?_without_tests:%{__make} test}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
