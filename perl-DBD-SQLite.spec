@@ -31,7 +31,7 @@ http://www.hwaci.com/sw/sqlite/.
 DBD::SQLite to sterownik DBI do baz danych SQLite. SQLite to silnik
 relacyjnych baz danych na licencji public domain. Mo¿na go znale¼æ pod
 http://www.hwaci.com/sw/sqlite/.
- 
+
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
