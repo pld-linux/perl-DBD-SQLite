@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	tests	# do not perform "make test"
-
+#
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	DBD
 %define		pnam	SQLite
@@ -25,23 +25,27 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 DBD::SQLite is a DBI driver for SQLite database. SQLite is a public
 domain RDBMS database engine that you can find at
-http://www.sqlite.org
+http://www.sqlite.org/ .
+
 Rather than ask you to install SQLite first, DBD::SQLite includes the
 entire thing in the distribution. So in order to get a fast
 transaction capable RDBMS working for your perl project you simply
 have to install this module, and nothing else.
+
 To use databases created using older SQLite version (2.x) you should
 use perl-DBD-SQLite2 package.
 
 %description -l pl
 DBD::SQLite to sterownik DBI do baz danych SQLite. SQLite to silnik
 relacyjnych baz danych na licencji public domain. Mo¿na go znale¼æ pod
-adresem http://www.sqlite.org
+adresem http://www.sqlite.org/ .
+
 DBD::SQLite zawiera w sobie ca³y silnik bazy danych. Dziêki temu aby
-otrzymaæ dzia³aj±cy RDBMS dostêpny z poziomu perla nie trzeba
+otrzymaæ dzia³aj±cy RDBMS dostêpny z poziomu Perla nie trzeba
 instalowaæ ¿adnych innych pakietów.
-Je¶li potrzebujesz skorzystaæ z baz danych stworzonych przy pomocy
-starszej wersji SQLite (2.x) to zainstaluj pakiet perl-DBD-SQLite2.
+
+Aby u¿ywaæ baz danych stworzonych przy pomocy starszej wersji SQLite
+(2.x) nale¿y zainstalowaæ pakiet perl-DBD-SQLite2.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
