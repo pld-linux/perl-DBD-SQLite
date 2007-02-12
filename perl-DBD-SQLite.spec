@@ -6,7 +6,7 @@
 %define		pdir	DBD
 %define		pnam	SQLite
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
-Summary(pl):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
+Summary(pl.UTF-8):   DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
 Version:	1.12
 Release:	1
@@ -35,17 +35,17 @@ have to install this module, and nothing else.
 To use databases created using older SQLite version (2.x) you should
 use perl-DBD-SQLite2 package.
 
-%description -l pl
+%description -l pl.UTF-8
 DBD::SQLite to sterownik DBI do baz danych SQLite. SQLite to silnik
-relacyjnych baz danych na licencji public domain. Mo¿na go znale¼æ pod
+relacyjnych baz danych na licencji public domain. MoÅ¼na go znaleÅºÄ‡ pod
 adresem <http://www.sqlite.org/>.
 
-DBD::SQLite zawiera w sobie ca³y silnik bazy danych. Dziêki temu aby
-otrzymaæ dzia³aj±cy RDBMS dostêpny z poziomu Perla nie trzeba
-instalowaæ ¿adnych innych pakietów.
+DBD::SQLite zawiera w sobie caÅ‚y silnik bazy danych. DziÄ™ki temu aby
+otrzymaÄ‡ dziaÅ‚ajÄ…cy RDBMS dostÄ™pny z poziomu Perla nie trzeba
+instalowaÄ‡ Å¼adnych innych pakietÃ³w.
 
-Aby u¿ywaæ baz danych stworzonych przy pomocy starszej wersji SQLite
-(2.x) nale¿y zainstalowaæ pakiet perl-DBD-SQLite2.
+Aby uÅ¼ywaÄ‡ baz danych stworzonych przy pomocy starszej wersji SQLite
+(2.x) naleÅ¼y zainstalowaÄ‡ pakiet perl-DBD-SQLite2.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
