@@ -57,6 +57,7 @@ echo y | %{__perl} Makefile.PL \
 # If SQLITE_PTR_SZ is not set in OPTIMIZE SQLite assumes 64-bit
 # architecture and fails. 
 %{__make} \
+	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags} -DSQLITE_PTR_SZ=`%{__perl} -MConfig -e 'print \"$Config{ptrsize}\";'`"
 
 %{?with_tests:%{__make} test}
