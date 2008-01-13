@@ -9,7 +9,7 @@ Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
 Version:	1.14
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
@@ -52,13 +52,13 @@ Aby używać baz danych stworzonych przy pomocy starszej wersji SQLite
 
 %build
 echo y | %{__perl} Makefile.PL \
+	USE_LOCAL_SQLITE=1 \
 	INSTALLDIRS=vendor
 
-# If SQLITE_PTR_SZ is not set in OPTIMIZE SQLite assumes 64-bit
-# architecture and fails. 
+# dumps core with sqlite 3.5.4 sometimes (eg. t/06error.t)
 %{__make} \
 	CC="%{__cc}" \
-	OPTIMIZE="%{rpmcflags} -DSQLITE_PTR_SZ=`%{__perl} -MConfig -e 'print \"$Config{ptrsize}\";'`"
+	OPTIMIZE="%{rpmcflags}"
 
 %{?with_tests:%{__make} test}
 
