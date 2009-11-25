@@ -16,9 +16,8 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	3bc9c8f141cb6c9256ea6dbcddbb9fe7
 URL:		http://search.cpan.org/dist/DBD-SQLite/
-%if %{with tests}
 BuildRequires:	perl-DBI
-%endif
+%{?with_tests:BuildRequires:	perl-Encode}
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,7 +58,8 @@ echo y | %{__perl} Makefile.PL \
 # dumps core with sqlite 3.5.4 sometimes (eg. t/06error.t)
 %{__make} \
 	CC="%{__cc}" \
-	OPTIMIZE="%{rpmcflags}"
+	OPTIMIZE="%{rpmcflags}" \
+	OTHERLDFLAGS="%{rpmcflags} %{rpmldflags}"
 
 %{?with_tests:%{__make} test}
 
