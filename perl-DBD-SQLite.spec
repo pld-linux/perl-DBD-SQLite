@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_without	tests	# do not perform "make test"
+%bcond_without	tests		# do not perform "make test"
+%bcond_without	system_sqlite3	# don't use system sqlite3
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	DBD
@@ -8,18 +9,23 @@
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
-Version:	1.35
+Version:	1.37
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	d9752e4a26fa54e74aa893dafd02ceda
+# Source0-md5:	b8ac1c584befa63cd5ffc391b2366e84
 URL:		http://search.cpan.org/dist/DBD-SQLite/
-BuildRequires:	perl-DBI
-%{?with_tests:BuildRequires:	perl-Encode}
+BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+%{?with_system_sqlite3:BuildRequires:	sqlite3-devel >= 3.6.0}
+%if %{with tests}
+BuildRequires:	perl-Encode
+BuildRequires:	perl-Test-Simple >= 0.86
+%endif
+%{?with_system_sqlite3:Requires:	sqlite3 >= 3.6.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,12 +56,14 @@ Aby używać baz danych stworzonych przy pomocy starszej wersji SQLite
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
+# honour USE_LOCAL_SQLITE instead of using bundled sqlite3 (see comments inside)
+%{__perl} -pi -e 's/if \( 0 \)/if ( 1 )/' Makefile.PL
+
 %build
 echo y | %{__perl} Makefile.PL \
-	USE_LOCAL_SQLITE=1 \
+	%{!?with_system_sqlite3:USE_LOCAL_SQLITE=1} \
 	INSTALLDIRS=vendor
 
-# dumps core with sqlite 3.5.4 sometimes (eg. t/06error.t)
 %{__make} \
 	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags}" \
@@ -69,6 +77,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/DBD/SQLite/Cookbook.pod
+# "sqlite3 amalgamation" sources
+%{__rm} -r $RPM_BUILD_ROOT%{perl_vendorarch}/auto/share
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -79,4 +91,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorarch}/auto/DBD/SQLite
 %{perl_vendorarch}/auto/DBD/SQLite/SQLite.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/DBD/SQLite/SQLite.so
-%{_mandir}/man3/DBD*
+%{_mandir}/man3/DBD::SQLite.3pm*
+%{_mandir}/man3/DBD::SQLite::Cookbook.3pm*
