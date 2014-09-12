@@ -89,7 +89,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes README
 %{perl_vendorarch}/DBD/SQLite.pm
 %dir %{perl_vendorarch}/auto/DBD/SQLite
-%{perl_vendorarch}/auto/DBD/SQLite/SQLite.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/DBD/SQLite/SQLite.so
 %{_mandir}/man3/DBD::SQLite.3pm*
 %{_mandir}/man3/DBD::SQLite::Cookbook.3pm*
