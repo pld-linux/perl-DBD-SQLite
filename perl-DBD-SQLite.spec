@@ -9,13 +9,13 @@
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
-Version:	1.42
-Release:	2
+Version:	1.48
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	86cfaf477cb9ddc39508f74f4268fc79
+# Source0-md5:	020c02ca595b2074a767a19af8506d2a
 URL:		http://search.cpan.org/dist/DBD-SQLite/
 BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -24,6 +24,8 @@ BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl-Encode
 BuildRequires:	perl-Test-Simple >= 0.86
+# needs ENABLE_FTS3_PARENTHESIS
+%{?with_system_sqlite3:BuildRequires:	sqlite3 >= 3.8.11.1-2}
 %endif
 %{?with_system_sqlite3:Requires:	sqlite3 >= 3.6.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -77,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/DBD/SQLite/Cookbook.pod
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/DBD/SQLite/{Cookbook,Fulltext_search}.pod
 # "sqlite3 amalgamation" sources
 %{__rm} -r $RPM_BUILD_ROOT%{perl_vendorarch}/auto/share
 
@@ -88,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Changes README
 %{perl_vendorarch}/DBD/SQLite.pm
+%{perl_vendorarch}/DBD/SQLite
 %dir %{perl_vendorarch}/auto/DBD/SQLite
 %attr(755,root,root) %{perl_vendorarch}/auto/DBD/SQLite/SQLite.so
-%{_mandir}/man3/DBD::SQLite.3pm*
-%{_mandir}/man3/DBD::SQLite::Cookbook.3pm*
+%{_mandir}/man3/DBD::SQLite*.3pm*
