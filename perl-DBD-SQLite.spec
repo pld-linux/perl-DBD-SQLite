@@ -20,6 +20,7 @@ URL:		http://search.cpan.org/dist/DBD-SQLite/
 BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.663
 %{?with_system_sqlite3:BuildRequires:	sqlite3-devel >= 3.6.0}
 %if %{with tests}
 BuildRequires:	perl-Encode
@@ -29,6 +30,9 @@ BuildRequires:	perl-Test-Simple >= 0.86
 %endif
 %{?with_system_sqlite3:Requires:	sqlite3 >= 3.6.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# virtual module provided by VirtualTable.pm
+%define		_noautoreq_perl	DBD::SQLite::VirtualTable::Cursor
 
 %description
 DBD::SQLite is a DBI driver for SQLite database. SQLite is a public
