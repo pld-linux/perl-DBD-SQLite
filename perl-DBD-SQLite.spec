@@ -3,7 +3,6 @@
 %bcond_without	tests		# do not perform "make test"
 %bcond_without	system_sqlite3	# don't use system sqlite3
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	DBD
 %define		pnam	SQLite
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
