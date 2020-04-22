@@ -15,11 +15,11 @@ License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	10796495b52927eb2e1df34c86924027
-URL:		http://search.cpan.org/dist/DBD-SQLite/
+URL:		https://metacpan.org/release/DBD-SQLite
 BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
-BuildRequires:	rpmbuild(macros) >= 1.663
+BuildRequires:	rpmbuild(macros) >= 1.745
 %{?with_system_sqlite3:BuildRequires:	sqlite3-devel >= 3.6.0}
 %if %{with tests}
 BuildRequires:	perl-Encode
