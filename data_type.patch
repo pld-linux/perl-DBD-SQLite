@@ -5,7 +5,7 @@
  		ok $data && ref $data eq ref {}, "got a metadata";
  		ok $data->{auto_increment}, "id is auto incremental";
 -		is $data->{data_type} => 'integer', "data type is correct";
-+		is $data->{data_type} => 'INTEGER', "data type is correct";
++		is lc($data->{data_type}) => 'integer', "data type is correct";
  		ok $data->{primary}, "id is a primary key";
  		ok !$data->{not_null}, "id is not null";
  	}

@@ -1,20 +1,20 @@
 #
 # Conditional build:
-%bcond_without	tests		# do not perform "make test"
-%bcond_without	system_sqlite3	# don't use system sqlite3
+%bcond_without	tests		# unit tests
+%bcond_without	system_sqlite3	# system sqlite3
 #
 %define		pdir	DBD
 %define		pnam	SQLite
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
-Version:	1.70
-Release:	2
+Version:	1.72
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	cc20dad09474da382488686ea07e8288
+# Source0-md5:	976df252ae0aceb7fb81587af425580b
 Patch0:		data_type.patch
 URL:		https://metacpan.org/release/DBD-SQLite
 BuildRequires:	perl-DBI >= 1.57
