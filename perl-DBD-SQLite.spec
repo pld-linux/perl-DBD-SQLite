@@ -16,7 +16,7 @@ Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	976df252ae0aceb7fb81587af425580b
 Patch0:		data_type.patch
-URL:		https://metacpan.org/release/DBD-SQLite
+URL:		https://metacpan.org/dist/DBD-SQLite
 BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
