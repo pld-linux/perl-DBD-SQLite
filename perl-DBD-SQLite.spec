@@ -8,13 +8,13 @@
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
-Version:	1.72
-Release:	3
+Version:	1.74
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	976df252ae0aceb7fb81587af425580b
+# Source0-md5:	9481bd8b644a2ef56ab01aead403649c
 Patch0:		data_type.patch
 URL:		https://metacpan.org/dist/DBD-SQLite
 BuildRequires:	perl-DBI >= 1.57
