@@ -61,7 +61,7 @@ Aby używać baz danych stworzonych przy pomocy starszej wersji SQLite
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 # honour USE_LOCAL_SQLITE instead of using bundled sqlite3 (see comments inside)
 %{__perl} -pi -e 's/if \( 0 \)/if ( 1 )/' Makefile.PL
