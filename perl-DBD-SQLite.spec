@@ -8,27 +8,25 @@
 Summary:	DBD::SQLite - Self Contained RDBMS in a DBI Driver (sqlite 3.x)
 Summary(pl.UTF-8):	DBD::SQLite - Kompletny RDBMS zawarty w sterowniku DBI (sqlite 3.x)
 Name:		perl-DBD-SQLite
-Version:	1.74
-Release:	2
+Version:	1.76
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	9481bd8b644a2ef56ab01aead403649c
+# Source0-md5:	96d894ec458852f750ddddefe4b4897f
 Patch0:		data_type.patch
 URL:		https://metacpan.org/dist/DBD-SQLite
 BuildRequires:	perl-DBI >= 1.57
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.745
-%{?with_system_sqlite3:BuildRequires:	sqlite3-devel >= 3.6.0}
+%{?with_system_sqlite3:BuildRequires:	sqlite3-devel >= 3.46.1}
 %if %{with tests}
 BuildRequires:	perl-Encode
-BuildRequires:	perl-Test-Simple >= 0.86
-# needs ENABLE_FTS3_PARENTHESIS
-%{?with_system_sqlite3:BuildRequires:	sqlite3 >= 3.8.11.1-2}
+BuildRequires:	perl-Test-Simple >= 0.88
 %endif
-%{?with_system_sqlite3:Requires:	sqlite3 >= 3.6.0}
+%{?with_system_sqlite3:Requires:	sqlite3 >= 3.46.1}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # virtual module provided by VirtualTable.pm
@@ -37,7 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 DBD::SQLite is a DBI driver for SQLite database. SQLite is a public
 domain RDBMS database engine that you can find at
-<http://www.sqlite.org/>.
+<https://www.sqlite.org/>.
 
 Rather than ask you to install SQLite first, DBD::SQLite includes the
 entire thing in the distribution. So in order to get a fast
@@ -50,7 +48,7 @@ use perl-DBD-SQLite2 package.
 %description -l pl.UTF-8
 DBD::SQLite to sterownik DBI do baz danych SQLite. SQLite to silnik
 relacyjnych baz danych na licencji public domain. Można go znaleźć pod
-adresem <http://www.sqlite.org/>.
+adresem <https://www.sqlite.org/>.
 
 DBD::SQLite zawiera w sobie cały silnik bazy danych. Dzięki temu aby
 otrzymać działający RDBMS dostępny z poziomu Perla nie trzeba
