@@ -13,7 +13,7 @@ Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	https://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	https://www.cpan.org/modules/by-authors/id/I/IS/ISHIGAKI/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	1d2fc87530458a0ac89f6d34cfd6e6b4
 Patch0:		data_type.patch
 URL:		https://metacpan.org/dist/DBD-SQLite
